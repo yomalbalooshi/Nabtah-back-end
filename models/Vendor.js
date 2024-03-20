@@ -1,6 +1,7 @@
+const mongoose = require('mongoose')
 const { Schema } = require('mongoose')
 
-const vendorSchema = new Schema(
+const VendorSchema = new Schema(
   {
     name: { type: String, required: true },
     avatar: { type: String, required: true },
@@ -11,5 +12,5 @@ const vendorSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = vendorSchema
+module.exports = mongoose.Model('Vendor', VendorSchema)
 

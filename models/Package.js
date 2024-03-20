@@ -1,6 +1,7 @@
+const mongoose = require('mongoose')
 const { Schema } = require('mongoose')
 
-const packageSchema = new Schema(
+const PackageSchema = new Schema(
   {
     name: { type: String, required: true },
     price: { type: Number, required: true },
@@ -16,4 +17,5 @@ const packageSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = packageSchema
+module.exports = mongoose.Model('Package', PackageSchema)
+
