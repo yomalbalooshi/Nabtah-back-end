@@ -11,7 +11,7 @@ router.get('/:id', plantCtrl.show)
 router.post('/', plantCtrl.create)
 
 //delete a plant
-router.delete('/:id', plantCtrl.delete)
+router.delete('/:id', plantCtrl.deletePlant)
 
 //update a plant
 router.put('/:id', plantCtrl.update)
