@@ -1,5 +1,4 @@
 const Tool = require('../models/Tool')
-const Vendor = require('../models/Vendor')
 
 const index = async (req, res) => {
   const tools = await Tool.find({})
@@ -42,12 +41,12 @@ const update = async (req, res) => {
     price: req.body.price
   }
   try {
-    const updatedTools = await Tool.findOneAndUpdate(
+    const updatedTool = await Tool.findOneAndUpdate(
       { _id: toolId },
       { $set: update },
       { new: true }
     )
-    res.send(updatedTools)
+    res.send(updatedTool)
   } catch (error) {
     console.log(`error:${error}`)
   }
