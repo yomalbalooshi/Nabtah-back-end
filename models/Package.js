@@ -17,5 +17,4 @@ const PackageSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.Model('Package', PackageSchema)
-
+module.exports = mongoose.model('Package', PackageSchema)

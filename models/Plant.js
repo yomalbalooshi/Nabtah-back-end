@@ -20,4 +20,4 @@ const PlantSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.Model('Plant', PlantSchema)
+module.exports = mongoose.model('Plant', PlantSchema)
