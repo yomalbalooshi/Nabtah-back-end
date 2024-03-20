@@ -1,12 +1,12 @@
 const { Schema } = require('mongoose')
 
-const itemSchema = new Schema(
+const plantSchema = new Schema(
   {
     name: { type: String, required: true },
     category: { type: String, required: true },
     price: { type: Number, required: true },
     available: { type: Boolean, required: true, default: true },
-    farmId: { type: Schema.Types.ObjectId, ref: 'Vendor' },
+    vendorId: { type: Schema.Types.ObjectId, ref: 'Vendor' },
     scientificName: { type: String },
     family: { type: String },
     origin: { type: String },
@@ -22,4 +22,4 @@ const itemSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = itemSchema
+module.exports = plantSchema
