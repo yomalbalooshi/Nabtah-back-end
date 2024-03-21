@@ -6,7 +6,6 @@ const index = async (req, res) => {
     .populate('services')
     .populate('produce')
     .populate('tools')
-    .populate('vendorId')
   res.send(packages)
 }
 
@@ -16,7 +15,6 @@ const show = async (req, res) => {
     .populate('services')
     .populate('produce')
     .populate('tools')
-    .populate('vendorId')
   res.send(package)
 }
 
