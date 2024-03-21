@@ -1,6 +1,7 @@
+const mongoose = require('mongoose')
 const { Schema } = require('mongoose')
 
-const plantSchema = new Schema(
+const PlantSchema = new Schema(
   {
     name: { type: String, required: true },
     category: { type: String, required: true },
@@ -19,4 +20,4 @@ const plantSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('OwnedPlant', plantSchema)
+module.exports = mongoose.Model('Plant', PlantSchema)
