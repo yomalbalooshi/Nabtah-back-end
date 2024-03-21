@@ -6,7 +6,7 @@ const OrderItemSchema = new Schema(
     quantity: { type: Number, required: true },
     type: { type: String, required: true },
     message: String,
-    itemId: { type: ObjectId, required: true }
+    itemId: { type: Schema.Types.ObjectId, required: true }
   },
   { timestamps: true }
 )

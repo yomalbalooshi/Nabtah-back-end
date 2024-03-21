@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const ownedPlantSchema = new Schema(
   {
@@ -22,4 +23,4 @@ const ownedPlantSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = ownedPlantSchema
+module.exports = mongoose.model('OwnedPlant', ownedPlantSchema)
