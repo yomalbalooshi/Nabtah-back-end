@@ -2,11 +2,21 @@ const Package = require('../models/Package')
 
 const index = async (req, res) => {
   const packages = await Package.find({})
+    .populate('plants')
+    .populate('services')
+    .populate('produce')
+    .populate('tools')
+    .populate('vendorId')
   res.send(packages)
 }
 
 const show = async (req, res) => {
   const package = await Package.findById(req.params.id)
+    .populate('plants')
+    .populate('services')
+    .populate('produce')
+    .populate('tools')
+    .populate('vendorId')
   res.send(package)
 }
 

@@ -10,18 +10,9 @@ const orders = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
+
 const customerDetails = async (req, res) => {
   try {
-    // let customerDetails = await Customer.findOne({
-    //   auth0_id: req.params.id
-    // }).populate('cart')
-
-    // console.log(customerDetails.cart[0].type.toString())
-
-    // customerDetails.populate({
-    //   path: 'cart.itemId',
-    //   model: customerDetails.cart[0].type.toString()
-    // })
     let customerDetails = await Customer.findOne({
       auth0_id: req.params.id
     })
@@ -29,20 +20,9 @@ const customerDetails = async (req, res) => {
       .populate({
         path: 'cart',
         populate: {
-          path: 'itemId',
-          model: this.type
+          path: 'itemId'
         }
-        // model: "Plant",
       })
-
-    // customerDetails.cart.forEach((item) => {
-    //   console.log(typeof item.type)
-    //   customerDetails.populate({
-    //     // path: 'cart',
-
-    //     populate: { path: 'itemId', model: item.type.toString() }
-    //   })
-    // })
 
     res.send(customerDetails)
   } catch (error) {
