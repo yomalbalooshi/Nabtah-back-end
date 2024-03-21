@@ -7,6 +7,6 @@ router.get('/', customerCtrl.customerDetails)
 
 router.post('/ownedplant', customerCtrl.addOwnedPlant)
 
-router.delete('/ownedplant', customerCtrl.addOwnedPlant)
+router.delete('/ownedplant', customerCtrl.deleteOwnedPlant)
 
 module.exports = router
