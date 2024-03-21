@@ -10,6 +10,10 @@ require('./config/database')
 var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/users')
 const produceRouter = require('./routes/produce')
+const orderRouter = require('./routes/order')
+const orderItemRouter = require('./routes/orderItem')
+const serviceRouter = require('./routes/service')
+const toolRouter = require('./routes/tool')
 
 var app = express()
 
@@ -27,6 +31,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/produce', produceRouter)
+app.use('/order', orderRouter)
+app.use('/orderItem', orderItemRouter)
+app.use('/service', serviceRouter)
+app.use('/tool', toolRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
