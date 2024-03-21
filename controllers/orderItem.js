@@ -1,7 +1,8 @@
 const OrderItem = require('../models/OrderItem')
+const Customer = require('../models/Customer')
 
 const index = async (req, res) => {
-  const orderItems = await OrderItem.find({})
+  const orderItems = await OrderItem.find({}).populate('itemId')
   res.send(orderItems)
 }
 
@@ -12,7 +13,16 @@ const show = async (req, res) => {
 
 const deleteOrderItem = async (req, res) => {
   try {
-    const order = await OrderItem.findById(req.params.id)
+    const order = await OrderItem.findById(req.params.id).populate('customer')
+
+    const customer = await Customer.findOne({
+      auth0_id: order.customer.auth0_id
+    })
+    console.log(customer)
+    customer.cart = customer.cart.filter(
+      (item) => item._id.toString() !== req.params.id
+    )
+    await customer.save()
     res.send(await order.deleteOne())
   } catch (error) {
     res.send(`error in deleting order: ${error}`)
@@ -25,7 +35,10 @@ const create = async (req, res) => {
     if (req.body[key] === '') delete req.body[key]
   }
   try {
-    const order = await OrderItem.create(req.body)
+    const order = await (await OrderItem.create(req.body)).populate('customer')
+    const customer = await Customer.findById(req.body.customer)
+    customer.cart.push(order)
+    await customer.save()
     res.send(order)
   } catch (err) {
     res.send(`error in creating order: ${err}`)

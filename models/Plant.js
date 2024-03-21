@@ -15,7 +15,8 @@ const PlantSchema = new Schema(
     pruningMonth: [String],
     pruningCount: { amount: Number, interval: String },
     description: String,
-    image: String
+    image: String,
+    vendor: { type: Schema.Types.ObjectId, ref: 'Vendor' }
   },
   { timestamps: true }
 )
