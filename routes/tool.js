@@ -8,7 +8,7 @@ router.get('/:id', toolCtrl.show)
 
 router.post('/', toolCtrl.create)
 
-router.delete('/:id', toolCtrl.delete)
+router.delete('/:id', toolCtrl.deleteTool)
 
 router.put('/:id', toolCtrl.update)
 

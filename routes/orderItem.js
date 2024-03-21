@@ -4,7 +4,7 @@ const orderItemCtrl = require('../controllers/orderItem')
 
 router.post('/', orderItemCtrl.create)
 
-router.delete('/:id', orderItemCtrl.delete)
+router.delete('/:id', orderItemCtrl.deleteOrderItem)
 
 router.put('/:id', orderItemCtrl.update)
 

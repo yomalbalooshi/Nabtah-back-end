@@ -8,7 +8,7 @@ router.get('/:id', produceCtrl.show)
 
 router.post('/', produceCtrl.create)
 
-router.delete('/:id', produceCtrl.delete)
+router.delete('/:id', produceCtrl.deleteProduce)
 
 router.put('/:id', produceCtrl.update)
 
