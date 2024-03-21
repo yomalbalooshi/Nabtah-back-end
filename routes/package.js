@@ -11,7 +11,7 @@ router.get('/:id', packageCtrl.show)
 router.post('/', packageCtrl.create)
 
 //delete a package
-router.delete('/:id', packageCtrl.delete)
+router.delete('/:id', packageCtrl.deletePackage)
 
 //update a package
 router.put('/:id', packageCtrl.update)

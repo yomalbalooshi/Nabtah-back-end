@@ -11,7 +11,7 @@ router.get('/:id', serviceCtrl.show)
 router.post('/', serviceCtrl.create)
 
 //delete a service
-router.delete('/:id', serviceCtrl.delete)
+router.delete('/:id', serviceCtrl.deleteService)
 
 //update a service
 router.put('/:id', serviceCtrl.update)
