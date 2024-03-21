@@ -16,6 +16,8 @@ const serviceRouter = require('./routes/service')
 const toolRouter = require('./routes/tool')
 const plantRouter = require('./routes/plant')
 const packageRouter = require('./routes/package')
+const vendorRouter = require('./routes/vendor')
+const customerRouter = require('./routes/customer')
 
 var app = express()
 
@@ -37,8 +39,10 @@ app.use('/order', orderRouter)
 app.use('/orderItem', orderItemRouter)
 app.use('/service', serviceRouter)
 app.use('/tool', toolRouter)
-app.use('/plant', plantRouter);
-app.use('/package', packageRouter);
+app.use('/plant', plantRouter)
+app.use('/package', packageRouter)
+app.use('/vendor/:id', vendorRouter)
+app.use('/customer/:id', customerRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

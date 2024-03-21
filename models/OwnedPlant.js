@@ -1,9 +1,12 @@
 const { Schema } = require('mongoose')
 
-const plantSchema = new Schema(
+const ownedPlantSchema = new Schema(
   {
     name: { type: String, required: true },
     category: { type: String, required: true },
+    price: { type: Number, required: true },
+    available: { type: Boolean, required: true, default: true },
+    vendorId: { type: Schema.Types.ObjectId, ref: 'Vendor' },
     scientificName: String,
     family: String,
     origin: String,
@@ -14,9 +17,9 @@ const plantSchema = new Schema(
     pruningMonth: [String],
     pruningCount: { amount: Number, interval: String },
     description: String,
-    defaultImage: String
+    image: String
   },
   { timestamps: true }
 )
 
-module.exports = mongoose.model('OwnedPlant', plantSchema)
+module.exports = ownedPlantSchema
