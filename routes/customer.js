@@ -3,6 +3,10 @@ const customerCtrl = require('../controllers/customer')
 
 router.get('/orders', customerCtrl.orders)
 
-router.get('/ownedplants', customerCtrl.ownedPlants)
+router.get('/', customerCtrl.customerDetails)
+
+router.post('/ownedplant', customerCtrl.addOwnedPlant)
+
+router.delete('/ownedplant', customerCtrl.addOwnedPlant)
 
 module.exports = router
