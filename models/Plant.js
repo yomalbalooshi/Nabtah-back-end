@@ -15,7 +15,7 @@ const PlantSchema = new Schema(
     pruningMonth: [String],
     pruningCount: { amount: Number, interval: String },
     description: String,
-    defaultImage: String
+    image: String
   },
   { timestamps: true }
 )

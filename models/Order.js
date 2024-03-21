@@ -4,7 +4,11 @@ const OrderSchema = new Schema(
   {
     total: { type: Number, required: true },
     message: String,
-    orderItems: [{ type: Schema.Types.ObjectId, ref: 'OrderItem' }]
+    orderItems: [{ type: Schema.Types.ObjectId, ref: 'OrderItem' }],
+    vendor: { type: Schema.Types.ObjectId },
+    customer: { type: Schema.Types.ObjectId },
+    deliveryDate: { type: Date, required: true },
+    delivered: { type: Boolean, required: true }
   },
   { timestamps: true }
 )

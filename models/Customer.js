@@ -9,10 +9,10 @@ const CustomerSchema = new Schema(
     password: { type: String },
     orders: [{ type: Schema.Types.ObjectId, ref: 'Order' }],
     cart: [{ type: Schema.Types.ObjectId, ref: 'Cart' }],
+    ownedPlants: [{ type: Schema.Types.ObjectId, ref: 'OwnedPlant' }],
     address: { type: String }
   },
   { timestamps: true }
 )
 
 module.exports = mongoose.Model('Customer', CustomerSchema)
-
