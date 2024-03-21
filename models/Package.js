@@ -12,7 +12,7 @@ const PackageSchema = new Schema(
     produce: [{ type: Schema.Types.ObjectId, ref: 'Produce' }],
     tools: [{ type: Schema.Types.ObjectId, ref: 'Tool' }],
     availablity: { type: Boolean, required: true, default: true },
-    vendorId: [{ type: Schema.Types.ObjectId, ref: 'Vendor' }]
+    vendorId: { type: Schema.Types.ObjectId, ref: 'Vendor' }
   },
   { timestamps: true }
 )

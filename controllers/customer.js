@@ -12,9 +12,40 @@ const orders = async (req, res) => {
 }
 const customerDetails = async (req, res) => {
   try {
-    const customerDetails = await Customer.find({ auth0_id: req.params.id })
+    // let customerDetails = await Customer.findOne({
+    //   auth0_id: req.params.id
+    // }).populate('cart')
+
+    // console.log(customerDetails.cart[0].type.toString())
+
+    // customerDetails.populate({
+    //   path: 'cart.itemId',
+    //   model: customerDetails.cart[0].type.toString()
+    // })
+    let customerDetails = await Customer.findOne({
+      auth0_id: req.params.id
+    })
+      .populate('cart')
+      .populate({
+        path: 'cart',
+        populate: {
+          path: 'itemId',
+          model: this.type
+        }
+        // model: "Plant",
+      })
+
+    // customerDetails.cart.forEach((item) => {
+    //   console.log(typeof item.type)
+    //   customerDetails.populate({
+    //     // path: 'cart',
+
+    //     populate: { path: 'itemId', model: item.type.toString() }
+    //   })
+    // })
+
     res.send(customerDetails)
-  } catch {
+  } catch (error) {
     res.send(`error: ${error}`)
   }
 }

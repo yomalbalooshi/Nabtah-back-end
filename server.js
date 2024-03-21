@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', indexRouter)
+app.use('/customer', customerRouter)
 app.use('/users', usersRouter)
 app.use('/produce', produceRouter)
 app.use('/order', orderRouter)
@@ -42,7 +42,6 @@ app.use('/tool', toolRouter)
 app.use('/plant', plantRouter)
 app.use('/package', packageRouter)
 app.use('/vendor/:id', vendorRouter)
-app.use('/customer/:id', customerRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
