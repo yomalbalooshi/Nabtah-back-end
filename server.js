@@ -41,7 +41,7 @@ app.use('/service', serviceRouter)
 app.use('/tool', toolRouter)
 app.use('/plant', plantRouter)
 app.use('/package', packageRouter)
-app.use('/vendor/:id', vendorRouter)
+app.use('/vendor', vendorRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

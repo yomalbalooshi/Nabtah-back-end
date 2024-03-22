@@ -3,6 +3,7 @@ const { Schema } = require('mongoose')
 
 const PlantSchema = new Schema(
   {
+    apiId: { type: String, required: true },
     name: { type: String, required: true },
     category: { type: String, required: true },
     scientificName: String,

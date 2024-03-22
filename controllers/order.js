@@ -17,7 +17,6 @@ const create = async (req, res) => {
     )
 
     res.send(newOrder)
-    res.send(newOrder)
   } catch (err) {
     res.send(`error in creating tool: ${err}`)
   }

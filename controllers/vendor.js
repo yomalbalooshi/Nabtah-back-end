@@ -3,6 +3,7 @@ const Plant = require('../models/Plant')
 const Service = require('../models/Service')
 const Produce = require('../models/Produce')
 const Order = require('../models/Order')
+const Package = require('../models/Package')
 
 const tools = async (req, res) => {
   try {
@@ -40,6 +41,15 @@ const produce = async (req, res) => {
   }
 }
 
+const package = async (req, res) => {
+  try {
+    const package = await Package.find({ vendor: req.params.id })
+    res.send(package)
+  } catch {
+    res.send(`error: ${error}`)
+  }
+}
+
 const customerOrders = async (req, res) => {
   try {
     const order = await Order.find({ vendor: req.params.id })
@@ -53,5 +63,6 @@ module.exports = {
   plants,
   service,
   produce,
-  customerOrders
+  customerOrders,
+  package
 }
