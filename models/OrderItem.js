@@ -6,7 +6,8 @@ const OrderItemSchema = new Schema(
     quantity: { type: Number, required: true },
     type: { type: String, required: true },
     message: String,
-    itemId: { type: Schema.Types.ObjectId, required: true }
+    itemId: { type: Schema.Types.ObjectId, required: true },
+    customer: { type: Schema.Types.ObjectId, ref: 'Customer' }
   },
   { timestamps: true }
 )

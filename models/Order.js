@@ -8,7 +8,8 @@ const OrderSchema = new Schema(
     vendor: { type: Schema.Types.ObjectId },
     customer: { type: Schema.Types.ObjectId },
     deliveryDate: { type: Date, required: true },
-    delivered: { type: Boolean, required: true }
+    delivered: { type: Boolean, required: true },
+    customer: { type: Schema.Types.ObjectId, ref: 'Customer' }
   },
   { timestamps: true }
 )

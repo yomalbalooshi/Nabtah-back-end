@@ -1,12 +1,12 @@
 const router = require('express').Router()
 const customerCtrl = require('../controllers/customer')
 
-router.get('/orders', customerCtrl.orders)
+router.get('/:id/orders', customerCtrl.orders)
 
-router.get('/', customerCtrl.customerDetails)
+router.get('/:id', customerCtrl.customerDetails)
 
-router.post('/ownedplant', customerCtrl.addOwnedPlant)
+router.post('/:id/ownedplant', customerCtrl.addOwnedPlant)
 
-router.delete('/ownedplant', customerCtrl.deleteOwnedPlant)
+router.delete('/:id/ownedplant', customerCtrl.deleteOwnedPlant)
 
 module.exports = router
