@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const vendorCtrl = require('../controllers/vendor')
 
+//get all vendors
+router.get('/', vendorCtrl.index)
+
 router.get('/:id/tool', vendorCtrl.tools)
 
 router.get('/:id/plant', vendorCtrl.plants)
