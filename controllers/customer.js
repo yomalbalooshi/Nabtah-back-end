@@ -10,6 +10,7 @@ const orders = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
+
 const customerDetails = async (req, res) => {
   try {
     let customerDetails = await Customer.findOne({

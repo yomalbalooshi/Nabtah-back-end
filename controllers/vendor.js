@@ -4,6 +4,13 @@ const Service = require('../models/Service')
 const Produce = require('../models/Produce')
 const Order = require('../models/Order')
 const Package = require('../models/Package')
+const Vendor = require('../models/Vendor')
+
+
+const index = async (req, res) => {
+  const vendors = await Vendor.find({})
+  res.send(vendors)
+}
 
 const tools = async (req, res) => {
   try {
@@ -59,6 +66,7 @@ const customerOrders = async (req, res) => {
   }
 }
 module.exports = {
+  index,
   tools,
   plants,
   service,
