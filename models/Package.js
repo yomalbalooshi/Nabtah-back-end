@@ -5,8 +5,8 @@ const PackageSchema = new Schema(
   {
     name: { type: String, required: true },
     price: { type: Number, required: true },
-    description: { type: String },
-    frequency: { type: String },
+    description: { type: String, required: true },
+    frequency: { type: String, required: true },
     plants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
     services: [{ type: Schema.Types.ObjectId, ref: 'Service' }],
     produce: [{ type: Schema.Types.ObjectId, ref: 'Produce' }],

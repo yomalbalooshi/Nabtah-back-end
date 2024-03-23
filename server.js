@@ -7,7 +7,6 @@ var cors = require('cors')
 require('dotenv').config()
 require('./config/database')
 
-var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/users')
 const produceRouter = require('./routes/produce')
 const orderRouter = require('./routes/order')

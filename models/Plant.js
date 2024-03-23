@@ -8,15 +8,15 @@ const PlantSchema = new Schema(
     category: { type: String, required: true },
     scientificName: String,
     family: String,
-    origin: String,
-    dimensions: { min: Number, max: Number, unit: String },
     cycle: String,
     watering: String,
     sunlight: [String],
     pruningMonth: [String],
     pruningCount: { amount: Number, interval: String },
     description: String,
+    available: { type: Boolean, required: true },
     image: String,
+    price: { type: Number, required: true },
     vendor: { type: Schema.Types.ObjectId, ref: 'Vendor' }
   },
   { timestamps: true }
