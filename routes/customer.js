@@ -3,7 +3,7 @@ const customerCtrl = require('../controllers/customer')
 
 router.get('/:id/orders', customerCtrl.orders)
 
-router.get('/:id', customerCtrl.customerDetails)
+router.post('/:id', customerCtrl.customerDetails)
 
 router.post('/:id/ownedplant', customerCtrl.addOwnedPlant)
 

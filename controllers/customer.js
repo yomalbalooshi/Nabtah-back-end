@@ -12,6 +12,7 @@ const orders = async (req, res) => {
 }
 
 const customerDetails = async (req, res) => {
+  //if not found, creates the customer
   try {
     let customerDetails = await Customer.findOne({
       auth0_id: req.params.id
@@ -23,6 +24,15 @@ const customerDetails = async (req, res) => {
           path: 'itemId'
         }
       })
+    if (!customerDetails) {
+      customerDetails = await Customer.create({
+        auth0_id: req.params.id,
+        email: req.body.email,
+        name: req.body.name,
+        avatar:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReDL3VWF1LoQP7RzNJj-9QEk4YD_nJkSO7rQ&usqp=CAU'
+      })
+    }
 
     res.send(customerDetails)
   } catch (error) {

@@ -6,7 +6,6 @@ const Order = require('../models/Order')
 const Package = require('../models/Package')
 const Vendor = require('../models/Vendor')
 
-
 const index = async (req, res) => {
   const vendors = await Vendor.find({})
   res.send(vendors)
@@ -65,6 +64,30 @@ const customerOrders = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
+
+const vendorDetails = async (req, res) => {
+  //if not found, creates the vendor.
+  // This is only accessed if vendor's own account, not for users to view vendor account
+  try {
+    let vendorDetails = await Vendor.findOne({
+      auth0_id: req.params.id
+    })
+    if (!vendorDetails) {
+      vendorDetails = await Vendor.create({
+        auth0_id: req.params.id,
+        email: req.body.email,
+        name: req.body.name,
+        avatar:
+          'https://previews.123rf.com/images/get4net/get4net1802/get4net180200198/94675971-corporate-businessman-avatar.jpg'
+      })
+    }
+
+    res.send(vendorDetails)
+  } catch (error) {
+    res.send(`error: ${error}`)
+  }
+}
+
 module.exports = {
   index,
   tools,
@@ -72,5 +95,6 @@ module.exports = {
   service,
   produce,
   customerOrders,
-  package
+  package,
+  vendorDetails
 }
