@@ -1,7 +1,7 @@
 const Service = require('../models/Service')
 
 const index = async (req, res) => {
-  const services = await Service.find({})
+  const services = await Service.find({}).populate('vendor')
   res.send(services)
 }
 

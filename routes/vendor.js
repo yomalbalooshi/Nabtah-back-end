@@ -16,5 +16,6 @@ router.get('/:id/produce', vendorCtrl.produce)
 router.get('/:id/package', vendorCtrl.package)
 
 router.get('/:id/customerorders', vendorCtrl.customerOrders)
+router.post('/:id', vendorCtrl.vendorDetails)
 
 module.exports = router
