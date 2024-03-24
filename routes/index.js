@@ -12,13 +12,14 @@ router.post('/create-checkout-session', async (req, res) => {
   //based on dummy data, need to make our cart in a similar format
   const lineItems = products.map((product) => ({
     price_data: {
-      currency: 'usd',
+      currency: 'bhd',
       product_data: {
-        name: product.item
+        name: product.itemId.name,
+        images: [product.itemId.image]
       },
-      unit_amount: Math.round(product.price * 100)
+      unit_amount: Math.round(product.itemId.price * 100)
     },
-    quantity: 1
+    quantity: product.quantity
     // need to get quantity from the cart
   }))
 
