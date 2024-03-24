@@ -17,8 +17,11 @@ const plantRouter = require('./routes/plant')
 const packageRouter = require('./routes/package')
 const vendorRouter = require('./routes/vendor')
 const customerRouter = require('./routes/customer')
+const indexRouter = require('./routes/index')
 
 var app = express()
+
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -41,6 +44,7 @@ app.use('/tool', toolRouter)
 app.use('/plant', plantRouter)
 app.use('/package', packageRouter)
 app.use('/vendor', vendorRouter)
+app.use('/', indexRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
