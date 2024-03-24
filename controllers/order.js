@@ -10,7 +10,6 @@ const create = async (req, res) => {
   try {
     const newOrder = await Order.create(req.body)
     const customerId = newOrder.customer
-    await OrderItem.deleteMany({ customer: customerId })
     await Customer.findOneAndUpdate(
       { _id: customerId },
       { $set: { cart: [] }, $push: { orders: newOrder._id } }
