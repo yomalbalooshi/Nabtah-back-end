@@ -48,7 +48,9 @@ const update = async (req, res) => {
     pruningMonth: req.body.pruningMonth,
     pruningCount: req.body.pruningCount,
     description: req.body.description,
-    image: req.body.image
+    image: req.body.image,
+    price: req.body.price,
+    available: req.body.available
   }
   try {
     const updatedPlant = await Plant.findOneAndUpdate(

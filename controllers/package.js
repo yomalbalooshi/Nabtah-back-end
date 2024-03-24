@@ -51,7 +51,7 @@ const update = async (req, res) => {
     services: req.body.services,
     produce: req.body.produce,
     tools: req.body.tools,
-    availablity: req.body.availablity
+    available: req.body.available
   }
   try {
     const updatedPackage = await Package.findOneAndUpdate(
