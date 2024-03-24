@@ -73,6 +73,11 @@ const vendorDetails = async (req, res) => {
       auth0_id: req.params.id
     })
     if (!vendorDetails) {
+      if (req.body.name) {
+        name = req.body.name
+      } else if (req.body.username) {
+        name = req.body.username
+      }
       vendorDetails = await Vendor.create({
         auth0_id: req.params.id,
         email: req.body.email,

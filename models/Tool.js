@@ -6,7 +6,8 @@ const ToolSchema = new Schema(
     description: { type: String, required: true },
     available: { type: Boolean, required: true },
     price: { type: Number, required: true },
-    vendor: { type: Schema.Types.ObjectId, ref: 'Vendor' }
+    vendor: { type: Schema.Types.ObjectId, ref: 'Vendor' },
+    image: String
   },
   { timestamps: true }
 )
