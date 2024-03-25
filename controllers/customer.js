@@ -24,6 +24,7 @@ const customerDetails = async (req, res) => {
           path: 'itemId'
         }
       })
+      .populate('orders')
     if (!customerDetails) {
       customerDetails = await Customer.create({
         auth0_id: req.params.id,
