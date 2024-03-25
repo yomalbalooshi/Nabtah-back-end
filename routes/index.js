@@ -17,7 +17,7 @@ router.post('/create-checkout-session', async (req, res) => {
         name: product.itemId.name,
         images: [product.itemId.image]
       },
-      unit_amount: Math.round(product.itemId.price * product.quantity * 100)
+      unit_amount: Math.round(product.itemId.price * product.quantity * 1000)
     },
     quantity: product.quantity
     // need to get quantity from the cart
