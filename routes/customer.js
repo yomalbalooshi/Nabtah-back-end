@@ -2,6 +2,8 @@ const router = require('express').Router()
 const customerCtrl = require('../controllers/customer')
 
 router.get('/:id/orders', customerCtrl.orders)
+router.get('/:id/cartItem/:itemId', customerCtrl.findCartItem)
+
 // router.get('/:id/cart', customerCtrl.getCart)
 router.get('/:id', customerCtrl.customerDetails)
 router.post('/:id/ownedplant', customerCtrl.addOwnedPlant)
