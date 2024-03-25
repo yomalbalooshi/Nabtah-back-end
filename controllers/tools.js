@@ -38,6 +38,7 @@ const update = async (req, res) => {
     name: req.body.name,
     description: req.body.description,
     available: req.body.available,
+    image: req.body.image,
     price: req.body.price
   }
   try {
