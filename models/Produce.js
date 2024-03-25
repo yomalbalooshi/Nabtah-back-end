@@ -8,7 +8,7 @@ const ProduceSchema = new Schema(
     available: { type: Boolean, required: true },
     price: { type: Number, required: true },
     vendor: { type: Schema.Types.ObjectId, ref: 'Vendor' },
-    image: String
+    image: { type: String, required: true }
   },
   { timestamps: true }
 )

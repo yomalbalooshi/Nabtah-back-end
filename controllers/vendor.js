@@ -49,7 +49,7 @@ const produce = async (req, res) => {
 
 const package = async (req, res) => {
   try {
-    const package = await Package.find({ vendor: req.params.id })
+    const package = await Package.find({ vendorId: req.params.id })
     res.send(package)
   } catch {
     res.send(`error: ${error}`)
