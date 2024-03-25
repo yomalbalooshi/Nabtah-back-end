@@ -3,12 +3,23 @@ const OrderItem = require('../models/OrderItem')
 const Customer = require('../models/Customer')
 
 const create = async (req, res) => {
-  // Remove empty properties so that defaults will be applied
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key]
   }
   try {
-    const newOrder = await Order.create(req.body)
+    let newOrderItems = []
+    await Promise.all(
+      req.body.orderItems.map(async (item) => {
+        const newOrderItem = await OrderItem.create(item)
+        newOrderItems.push(newOrderItem)
+      })
+    )
+
+    const order = {
+      orderItems: newOrderItems.map((item) => item.itemId),
+      customer: req.body.customer
+    }
+    const newOrder = await Order.create(order)
     const customerId = newOrder.customer
     await Customer.findOneAndUpdate(
       { _id: customerId },
@@ -17,6 +28,8 @@ const create = async (req, res) => {
 
     res.send(newOrder)
   } catch (err) {
+    console.log(err.message)
+
     res.send(`error in creating tool: ${err}`)
   }
 }
