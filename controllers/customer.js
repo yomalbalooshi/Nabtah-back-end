@@ -1,7 +1,7 @@
 const Order = require('../models/Order')
 const Customer = require('../models/Customer')
 const OwnedPlant = require('../models/OwnedPlant')
-
+const ShoppingCartItem = require('../models/ShoppingCartItem')
 const orders = async (req, res) => {
   try {
     const orders = await Order.find({ customer: req.params.id })
@@ -10,8 +10,25 @@ const orders = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
-
 const customerDetails = async (req, res) => {
+  try {
+    let customerDetails = await Customer.findOne({
+      _id: req.params.id
+    })
+      .populate('cart')
+      .populate({
+        path: 'cart',
+        populate: {
+          path: 'itemId'
+        }
+      })
+    res.send(customerDetails)
+  } catch (error) {
+    res.send(`error: ${error}`)
+  }
+}
+const customerAuthentication = async (req, res) => {
+  //THIS IS CALLED ON USER LOGIN
   //if not found, creates the customer
   try {
     let customerDetails = await Customer.findOne({
@@ -53,6 +70,66 @@ const deleteOwnedPlant = async (req, res) => {
   }
 }
 
+const deleteCartItem = async (req, res) => {
+  try {
+    console.log(req.body)
+    const customer = await Customer.findOne({ _id: req.params.id })
+    customer.cart = customer.cart.filter(
+      (cartItem) => cartItem.toString() !== req.body.cartItemId
+    )
+    await customer.save()
+
+    res.send('Deleted')
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: `Error in deleting cart item: ${error.message}` })
+  }
+}
+
+const addToCart = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { quantity, itemId, itemModel } = req.body
+    const newCartItem = await ShoppingCartItem.create({
+      quantity,
+      itemId,
+      itemModel
+    })
+    const customer = await Customer.findById(id)
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' })
+    }
+    customer.cart.push(newCartItem)
+    await customer.save()
+    res
+      .status(201)
+      .json({ message: 'Shopping cart item created successfully', newCartItem })
+  } catch (error) {
+    console.error('Error creating shopping cart item:', error)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+}
+const updateCartItem = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { itemId, quantity } = req.body
+    const cartItem = await ShoppingCartItem.findById(itemId)
+    if (!cartItem) {
+      return res.status(404).json({ error: 'Shopping cart item not found' })
+    }
+    cartItem.quantity = quantity
+    await cartItem.save()
+
+    const customer = await Customer.findById(id)
+
+    res.status(200).json({ message: 'Shopping cart item updated successfully' })
+  } catch (error) {
+    console.error('Error updating shopping cart item:', error)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 const addOwnedPlant = async (req, res) => {
   try {
     const ownedPlants = await OwnedPlant.find({})
@@ -86,7 +163,11 @@ const addOwnedPlant = async (req, res) => {
 
 module.exports = {
   orders,
+  addToCart,
   customerDetails,
   addOwnedPlant,
-  deleteOwnedPlant
+  deleteOwnedPlant,
+  customerAuthentication,
+  deleteCartItem,
+  updateCartItem
 }
