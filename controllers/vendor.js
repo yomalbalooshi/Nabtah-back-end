@@ -83,7 +83,7 @@ const vendorDetails = async (req, res) => {
         email: req.body.email,
         name: req.body.name,
         avatar:
-          'https://previews.123rf.com/images/get4net/get4net1802/get4net180200198/94675971-corporate-businessman-avatar.jpg'
+          'https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg'
       })
     }
 
