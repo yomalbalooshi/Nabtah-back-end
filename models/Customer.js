@@ -8,7 +8,7 @@ const CustomerSchema = new Schema(
     avatar: { type: String, required: true },
     email: { type: String, required: true },
     orders: [{ type: Schema.Types.ObjectId, ref: 'Order' }],
-    cart: [{ type: Schema.Types.ObjectId, ref: 'OrderItem' }],
+    cart: [{ type: Schema.Types.ObjectId, ref: 'ShoppingCartItem' }],
     ownedPlants: [{ type: Schema.Types.ObjectId, ref: 'OwnedPlant' }],
     address: { type: String }
   },
