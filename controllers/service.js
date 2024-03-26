@@ -39,7 +39,6 @@ const update = async (req, res) => {
     description: req.body.description,
     available: req.body.available,
     price: req.body.price,
-    quantity: req.body.quantity,
     frequency: req.body.frequency
   }
   try {

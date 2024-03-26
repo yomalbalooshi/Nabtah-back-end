@@ -6,7 +6,6 @@ const ServiceSchema = new Schema(
     description: { type: String, required: true },
     available: { type: Boolean, required: true },
     price: { type: Number, required: true },
-    quantity: { type: Number, required: true },
     frequency: { type: String, required: true },
     vendor: { type: Schema.Types.ObjectId, ref: 'Vendor' }
   },
