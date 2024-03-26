@@ -68,8 +68,16 @@ const customerOrders = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
-
 const vendorDetails = async (req, res) => {
+  try {
+    let vendorDetails = await Vendor.findById(req.params.id)
+
+    res.send(vendorDetails)
+  } catch (error) {
+    res.send(`error: ${error}`)
+  }
+}
+const vendorAuthentication = async (req, res) => {
   //if not found, creates the vendor.
   // This is only accessed if vendor's own account, not for users to view vendor account
   try {
@@ -105,5 +113,6 @@ module.exports = {
   produce,
   customerOrders,
   package,
-  vendorDetails
+  vendorDetails,
+  vendorAuthentication
 }
