@@ -2,9 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const OrderItemSchema = new Schema(
   {
-    total: { type: Number, required: true },
     quantity: { type: Number, required: true },
-    message: String,
     itemId: { type: Schema.Types.ObjectId, refPath: 'itemModel' },
     itemModel: {
       type: String,
