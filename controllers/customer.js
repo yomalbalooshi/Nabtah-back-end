@@ -22,6 +22,7 @@ const customerDetails = async (req, res) => {
           path: 'itemId'
         }
       })
+      .populate({ path: 'orders', populate: { path: 'orderItems' } })
     res.send(customerDetails)
   } catch (error) {
     res.send(`error: ${error}`)
