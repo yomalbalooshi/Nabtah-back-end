@@ -5,6 +5,13 @@ const ShoppingCartItem = require('../models/ShoppingCartItem')
 const orders = async (req, res) => {
   try {
     const orders = await Order.find({ customer: req.params.id })
+      .populate('orderItems')
+      .populate({
+        path: 'orderItems',
+        populate: {
+          path: 'itemId'
+        }
+      })
     res.send(orders)
   } catch {
     res.send(`error: ${error}`)
@@ -22,6 +29,9 @@ const customerDetails = async (req, res) => {
           path: 'itemId'
         }
       })
+      .populate('orders')
+    // .populate({ path: 'orders', populate: { path: 'customerId' } })
+
     res.send(customerDetails)
   } catch (error) {
     res.send(`error: ${error}`)
