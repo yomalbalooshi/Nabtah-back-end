@@ -36,9 +36,6 @@ const create = async (req, res) => {
   }
   try {
     const order = await (await OrderItem.create(req.body)).populate('customer')
-    const customer = await Customer.findById(req.body.customer)
-    customer.cart.push(order)
-    await customer.save()
     res.send(order)
   } catch (err) {
     res.send(`error in creating order: ${err}`)

@@ -9,7 +9,6 @@ const CustomerSchema = new Schema(
     email: { type: String, required: true },
     orders: [{ type: Schema.Types.ObjectId, ref: 'Order' }],
     cart: [{ type: Schema.Types.ObjectId, ref: 'ShoppingCartItem' }],
-    ownedPlants: [{ type: Schema.Types.ObjectId, ref: 'OwnedPlant' }],
     address: { type: String }
   },
   { timestamps: true }
