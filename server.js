@@ -18,7 +18,7 @@ const packageRouter = require('./routes/package')
 const vendorRouter = require('./routes/vendor')
 const customerRouter = require('./routes/customer')
 const indexRouter = require('./routes/index')
-
+const mailRouter = require('./routes/mail')
 var app = express()
 
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
@@ -44,6 +44,8 @@ app.use('/tool', toolRouter)
 app.use('/plant', plantRouter)
 app.use('/package', packageRouter)
 app.use('/vendor', vendorRouter)
+app.use('/mail', mailRouter)
+
 app.use('/', indexRouter)
 
 // catch 404 and forward to error handler
