@@ -40,6 +40,7 @@ const update = async (req, res) => {
     available: req.body.available,
     price: req.body.price,
     quantity: req.body.quantity,
+    image: req.body.image,
     frequency: req.body.frequency
   }
   try {
