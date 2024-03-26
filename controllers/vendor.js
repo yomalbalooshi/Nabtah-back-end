@@ -50,6 +50,10 @@ const produce = async (req, res) => {
 const package = async (req, res) => {
   try {
     const package = await Package.find({ vendorId: req.params.id })
+      .populate('plants')
+      .populate('services')
+      .populate('produce')
+      .populate('tools')
     res.send(package)
   } catch {
     res.send(`error: ${error}`)
