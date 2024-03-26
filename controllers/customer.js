@@ -47,7 +47,7 @@ const customerAuthentication = async (req, res) => {
         email: req.body.email,
         name: req.body.name,
         avatar:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReDL3VWF1LoQP7RzNJj-9QEk4YD_nJkSO7rQ&usqp=CAU'
+          'https://64.media.tumblr.com/735e658e2d279dba326a5658596c5745/tumblr_ps76c9pCSf1vxg6x3o10_1280.jpg'
       })
     }
 
