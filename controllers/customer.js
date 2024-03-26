@@ -29,8 +29,10 @@ const customerDetails = async (req, res) => {
           path: 'itemId'
         }
       })
-      .populate('orders')
-    // .populate({ path: 'orders', populate: { path: 'customerId' } })
+      .populate({
+        path: 'orders',
+        populate: { path: 'orderItems', populate: { path: 'itemId' } }
+      })
 
     res.send(customerDetails)
   } catch (error) {
