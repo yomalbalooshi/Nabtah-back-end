@@ -121,6 +121,27 @@ const addToCart = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' })
   }
 }
+const findCartItem = async (req, res) => {
+  const { id, itemId } = req.params
+  try {
+    let customerDetails = await Customer.findById(id)
+      .populate('cart')
+      .populate({
+        path: 'cart',
+        populate: {
+          path: 'itemId'
+        }
+      })
+    console.log(customerDetails)
+    let cartitem = customerDetails.cart.find(
+      (item) => item.itemId._id == itemId
+    )
+    console.log(cartitem)
+    res.send(cartitem)
+  } catch (error) {
+    console.log(error)
+  }
+}
 const updateCartItem = async (req, res) => {
   try {
     const { id } = req.params
@@ -180,5 +201,6 @@ module.exports = {
   deleteOwnedPlant,
   customerAuthentication,
   deleteCartItem,
-  updateCartItem
+  updateCartItem,
+  findCartItem
 }
