@@ -77,6 +77,7 @@ const vendorDetails = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
+
 const vendorAuthentication = async (req, res) => {
   //if not found, creates the vendor.
   // This is only accessed if vendor's own account, not for users to view vendor account
@@ -104,6 +105,24 @@ const vendorAuthentication = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
+const update = async (req, res) => {
+  let vendorId = req.params.id
+  const update = {
+    name: req.body.name,
+    avatar: req.body.avatar,
+    location: req.body.location
+  }
+  try {
+    const updatedVendor = await Vendor.findOneAndUpdate(
+      { _id: vendorId },
+      { $set: update },
+      { new: true }
+    )
+    res.send(updatedVendor)
+  } catch (error) {
+    console.log(`error:${error}`)
+  }
+}
 
 module.exports = {
   index,
@@ -114,5 +133,6 @@ module.exports = {
   customerOrders,
   package,
   vendorDetails,
-  vendorAuthentication
+  vendorAuthentication,
+  update
 }
