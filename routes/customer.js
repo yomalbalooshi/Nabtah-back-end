@@ -12,6 +12,8 @@ router.post('/:id/cart', customerCtrl.addToCart)
 router.post('/:id', customerCtrl.customerAuthentication)
 router.delete('/:id/ownedplant', customerCtrl.deleteOwnedPlant)
 router.delete('/:id/cart', customerCtrl.deleteCartItem)
+
 router.put('/:id/cart', customerCtrl.updateCartItem)
+router.put('/:id', customerCtrl.update)
 
 module.exports = router

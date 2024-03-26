@@ -195,6 +195,22 @@ const addOwnedPlant = async (req, res) => {
   }
 }
 
+const update = async (req, res) => {
+  let customerId = req.params.id
+  const update = {
+    address: req.body.address
+  }
+  try {
+    const updatedCustomer = await Customer.findOneAndUpdate(
+      { _id: customerId },
+      { $set: update },
+      { new: true }
+    )
+    res.send(updatedCustomer)
+  } catch (error) {
+    console.log(`error:${error}`)
+  }
+}
 module.exports = {
   orders,
   addToCart,
@@ -204,5 +220,6 @@ module.exports = {
   customerAuthentication,
   deleteCartItem,
   updateCartItem,
-  findCartItem
+  findCartItem,
+  update
 }
