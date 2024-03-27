@@ -27,8 +27,8 @@ router.post('/create-checkout-session', async (req, res) => {
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: 'payment',
-    success_url: 'http://localhost:5173/paymentsuccess',
-    cancel_url: 'http://localhost:5173/paymentfailed'
+    success_url: 'https://rmnd7bkgem.us-east-1.awsapprunner.com/paymentsuccess',
+    cancel_url: 'https://rmnd7bkgem.us-east-1.awsapprunner.com/paymentfailed'
   })
 
   res.json({ id: session.id })
