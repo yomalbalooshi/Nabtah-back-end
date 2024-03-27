@@ -5,7 +5,7 @@ const Produce = require('../models/Produce')
 const Order = require('../models/Order')
 const Package = require('../models/Package')
 const Vendor = require('../models/Vendor')
-
+const OrderItem = require('../models/OrderItem')
 const index = async (req, res) => {
   const vendors = await Vendor.find({})
   res.send(vendors)
@@ -62,9 +62,16 @@ const package = async (req, res) => {
 
 const customerOrders = async (req, res) => {
   try {
-    const order = await Order.find({ vendor: req.params.id })
-    res.send(order)
-  } catch {
+    let vendorId = req.params.id
+    console.log(vendorId)
+
+    let orders = await OrderItem.find().populate({
+      path: 'itemId',
+      populate: { path: 'vendor', match: { _id: vendorId } }
+    })
+    let filteredOrders = orders.filter((order) => order.itemId.vendor !== null)
+    res.send(filteredOrders)
+  } catch (error) {
     res.send(`error: ${error}`)
   }
 }
