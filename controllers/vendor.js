@@ -24,7 +24,7 @@ const plants = async (req, res) => {
   try {
     const plants = await Plant.find({ vendor: req.params.id })
     res.send(plants)
-  } catch {
+  } catch (error) {
     res.send(`error: ${error}`)
   }
 }
