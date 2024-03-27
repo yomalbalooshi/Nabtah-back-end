@@ -9,7 +9,6 @@ router.get('/', function (req, res, next) {
 
 router.post('/create-checkout-session', async (req, res) => {
   const { products } = req.body
-  //based on dummy data, need to make our cart in a similar format
   const lineItems = products.map((product) => ({
     price_data: {
       currency: 'bhd',
@@ -20,7 +19,6 @@ router.post('/create-checkout-session', async (req, res) => {
       unit_amount: Math.round(product.itemId.price * 1000)
     },
     quantity: product.quantity
-    // need to get quantity from the cart
   }))
 
   const session = await stripe.checkout.sessions.create({

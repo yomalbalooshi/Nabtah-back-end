@@ -9,14 +9,14 @@ const create = async (req, res) => {
   try {
     let newOrderItems = []
     await Promise.all(
-      req.body.orderItems.map(async (item) => {
+      req?.body?.orderItems?.map(async (item) => {
         const newOrderItem = await OrderItem.create(item)
         newOrderItems.push(newOrderItem)
       })
     )
 
     const order = {
-      orderItems: newOrderItems.map((item) => item.itemId),
+      orderItems: newOrderItems?.map((item) => item._id),
       customer: req.body.customer
     }
     const newOrder = await Order.create(order)
