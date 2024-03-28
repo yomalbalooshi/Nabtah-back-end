@@ -13,7 +13,7 @@ const orders = async (req, res) => {
         }
       })
     res.send(orders)
-  } catch {
+  } catch (error) {
     res.send(`error: ${error}`)
   }
 }

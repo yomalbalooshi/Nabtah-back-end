@@ -7,6 +7,7 @@ const index = async (req, res) => {
 
 const show = async (req, res) => {
   const service = await Service.findById(req.params.id)
+  console.log(service)
   res.send(service)
 }
 
