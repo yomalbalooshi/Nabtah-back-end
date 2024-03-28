@@ -5,7 +5,7 @@ const Produce = require('../models/Produce')
 const Order = require('../models/Order')
 const Package = require('../models/Package')
 const Vendor = require('../models/Vendor')
-
+const OrderItem = require('../models/OrderItem')
 const index = async (req, res) => {
   const vendors = await Vendor.find({})
   res.send(vendors)
@@ -62,9 +62,16 @@ const package = async (req, res) => {
 
 const customerOrders = async (req, res) => {
   try {
-    const order = await Order.find({ vendor: req.params.id })
-    res.send(order)
-  } catch {
+    let vendorId = req.params.id
+    console.log(vendorId)
+
+    let orders = await OrderItem.find().populate({
+      path: 'itemId',
+      populate: { path: 'vendor', match: { _id: vendorId } }
+    })
+    let filteredOrders = orders.filter((order) => order.itemId.vendor !== null)
+    res.send(filteredOrders)
+  } catch (error) {
     res.send(`error: ${error}`)
   }
 }
@@ -77,6 +84,7 @@ const vendorDetails = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
+
 const vendorAuthentication = async (req, res) => {
   //if not found, creates the vendor.
   // This is only accessed if vendor's own account, not for users to view vendor account
@@ -104,6 +112,24 @@ const vendorAuthentication = async (req, res) => {
     res.send(`error: ${error}`)
   }
 }
+const update = async (req, res) => {
+  let vendorId = req.params.id
+  const update = {
+    name: req.body.name,
+    avatar: req.body.avatar,
+    location: req.body.location
+  }
+  try {
+    const updatedVendor = await Vendor.findOneAndUpdate(
+      { _id: vendorId },
+      { $set: update },
+      { new: true }
+    )
+    res.send(updatedVendor)
+  } catch (error) {
+    console.log(`error:${error}`)
+  }
+}
 
 module.exports = {
   index,
@@ -114,5 +140,6 @@ module.exports = {
   customerOrders,
   package,
   vendorDetails,
-  vendorAuthentication
+  vendorAuthentication,
+  update
 }

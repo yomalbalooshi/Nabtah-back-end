@@ -17,7 +17,8 @@ router.get('/:id/package', vendorCtrl.package)
 
 router.get('/:id/customerorders', vendorCtrl.customerOrders)
 router.get('/:id', vendorCtrl.vendorDetails)
-
 router.post('/:id', vendorCtrl.vendorAuthentication)
+
+router.put('/:id', vendorCtrl.update)
 
 module.exports = router
