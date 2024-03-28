@@ -13,7 +13,7 @@ const index = async (req, res) => {
 
 const tools = async (req, res) => {
   try {
-    const tools = await Tool.find({ vendor: req.params.id })
+    const tools = await Tool.find({ vendor: req.params.id }).populate('vendor')
     res.send(tools)
   } catch {
     res.send(`error: ${error}`)
@@ -22,7 +22,9 @@ const tools = async (req, res) => {
 
 const plants = async (req, res) => {
   try {
-    const plants = await Plant.find({ vendor: req.params.id })
+    const plants = await Plant.find({ vendor: req.params.id }).populate(
+      'vendor'
+    )
     res.send(plants)
   } catch (error) {
     res.send(`error: ${error}`)
@@ -31,7 +33,9 @@ const plants = async (req, res) => {
 
 const service = async (req, res) => {
   try {
-    const services = await Service.find({ vendor: req.params.id })
+    const services = await Service.find({ vendor: req.params.id }).populate(
+      'vendor'
+    )
     res.send(services)
   } catch {
     res.send(`error: ${error}`)
@@ -40,7 +44,9 @@ const service = async (req, res) => {
 
 const produce = async (req, res) => {
   try {
-    const produce = await Produce.find({ vendor: req.params.id })
+    const produce = await Produce.find({ vendor: req.params.id }).populate(
+      'vendor'
+    )
     res.send(produce)
   } catch {
     res.send(`error: ${error}`)
